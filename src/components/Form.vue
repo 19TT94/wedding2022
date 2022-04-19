@@ -6,12 +6,11 @@
         id="form"
         name="rsvp"
         method="POST"
-        netlify
         data-netlify="true"
         data-netlify-honeypot="bot-field"
         @submit.prevent="handleSubmit()"
       >
-        <input type="hidden" name="form-name" value="inquries" />
+        <input type="hidden" name="form-name" value="rsvp" />
         <input type="text" placeholder="Name" name="name" v-model="name" />
         <input type="email" placeholder="Email" name="email" v-model="email" />
         <label for="attending" class="inline">
