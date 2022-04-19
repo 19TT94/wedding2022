@@ -32,7 +32,7 @@
           Your message has been recieved, we look forward to seeing you!
         </h3>
         <h3 v-else>
-          There was an error processing you're resquest. Please try again later
+          There was an error processing you're request. Please try again later
           or contact me via email.
         </h3>
       </div>
@@ -42,6 +42,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import type { AxiosRequestConfig } from "axios";
 import axios from "axios";
 
 export default defineComponent({
@@ -66,6 +67,12 @@ export default defineComponent({
         .join("&");
     },
     handleSubmit() {
+      const axiosConfig: AxiosRequestConfig = {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        }
+      };
+
       axios
         .post(
           "/",
@@ -74,10 +81,8 @@ export default defineComponent({
             name: this.name,
             email: this.email,
             message: this.message
-          })
-          //   header: {
-          //   "Content-Type": "application/x-www-form-urlencoded"
-          // }
+          }),
+          axiosConfig
         )
         .then(() => {
           this.processed = true;
