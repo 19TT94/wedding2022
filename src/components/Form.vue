@@ -2,11 +2,11 @@
   <div class="netlify-form">
     <div class="form" v-if="!processed">
       <h2>RSVP</h2>
-
       <form
         id="form"
-        name="inquiries"
+        name="rsvp"
         method="POST"
+        netlify
         data-netlify="true"
         data-netlify-honeypot="bot-field"
         @submit.prevent="handleSubmit()"
@@ -53,7 +53,6 @@ export default defineComponent({
       email: "",
       attending: 1,
       plusOne: true,
-      message: "",
       processed: false,
       success: false
     };
@@ -77,10 +76,11 @@ export default defineComponent({
         .post(
           "/",
           this.encode({
-            "form-name": "inquiries",
+            "form-name": "rsvp",
             name: this.name,
             email: this.email,
-            message: this.message
+            attending: this.attending,
+            plusOne: this.plusOne
           }),
           axiosConfig
         )
