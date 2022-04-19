@@ -23,13 +23,13 @@
           <span>Plus&nbsp;one?</span>
           <input type="checkbox" name="plusOne" v-model="plusOne" />
         </label>
-        <button class="button submit" type="submit">Send</button>
+        <button class="button-full submit" type="submit">Send</button>
       </form>
     </div>
     <div class="proccessed" v-else>
       <div class="message">
         <h3 v-if="success">
-          Your message has been recieved, I will reach out!
+          Your message has been recieved, we look forward to seeing you!
         </h3>
         <h3 v-else>
           There was an error processing you're resquest. Please try again later
@@ -42,8 +42,8 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import axios from "axios";
 
-// const axios = require('axios')
 export default defineComponent({
   name: "NetlifyForm",
   data() {
@@ -71,20 +71,26 @@ export default defineComponent({
           "Content-Type": "application/x-www-form-urlencoded"
         }
       };
-      //   axios.post('/', this.encode({
-      //       'form-name': 'inquiries',
-      //       'name': this.name,
-      //       'email': this.email,
-      //       'message': this.message
-      //     }), axiosConfig)
-      //     .then(()=> {
-      //       this.processed = true
-      //       this.success = true
-      //     })
-      //     .catch((e)=> {
-      //       this.processed = true
-      //       this.success = false
-      //     })
+
+      axios
+        .post(
+          "/",
+          this.encode({
+            "form-name": "inquiries",
+            name: this.name,
+            email: this.email,
+            message: this.message
+          }),
+          axiosConfig
+        )
+        .then(() => {
+          this.processed = true;
+          this.success = true;
+        })
+        .catch((e) => {
+          this.processed = true;
+          this.success = false;
+        });
     }
   }
 });

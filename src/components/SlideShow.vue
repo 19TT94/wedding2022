@@ -7,10 +7,7 @@
         :key="`x-${index}`"
         :class="[`slide-${index}`, { active: currentIndex === index }]"
       >
-        <div
-          class="content"
-          :style="{ 'background-image': `url(${item})` }"
-        ></div>
+        <div class="content" :style="item"></div>
       </li>
     </ul>
 
@@ -47,20 +44,18 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  // props: {
-  //   slideNames: {
-  //     type: Array,
-  //     required: true
-  //   }
-  // },
   mounted() {
     this.initialize();
   },
   data() {
     return {
       slides: [
-        "https://via.placeholder.com/500x500",
-        "https://via.placeholder.com/500x200"
+        "background-image: url(https://drive.google.com/uc?id=1pfsOForvjeWhdV3UjFQ86pVk04PmIB_L);",
+        "background-image: url(https://drive.google.com/uc?id=1Jmhgp_2zdmBblZoIytkmi54pVWJUedBw)",
+        "background-image: url(https://drive.google.com/uc?id=1zsqD9F-bLVPkcvHaT_zLcmXo2mZCGCDP",
+        "background-image: url(https://drive.google.com/uc?id=1s_X5fuipJO3TN5STsMRszH5AXIFCFZzh)",
+        "background-image: url(https://drive.google.com/uc?id=1DmyqJxkHDhLalWlg1fTDOlU0RJfFJ5jM)",
+        "background-image: url(https://drive.google.com/uc?id=1GBJl6eqLcQM7n4_2XF-_gi5RAVZSIy3j)"
       ],
       currentIndex: 0,
       navigation: true,
@@ -95,7 +90,7 @@ export default defineComponent({
       setTimeout(() => {
         this.currentIndex = 0;
         this.setupFinished = true;
-      }, 0);
+      }, 500);
     },
     setItem(index: number): void {
       this.currentIndex = index;
@@ -106,24 +101,11 @@ export default defineComponent({
     backward(): void {
       this.currentIndex = this.previousIndex;
     }
-    // onSwipe(e: any) {
-    //   // if mobile device
-    //   if (isMobileSize() && isMobileDevice()) {
-    //     // swipe left
-    //     if (e.direction === 2) {
-    //       this.currentIndex = this.nextIndex;
-    //     }
-    //     // swipe right
-    //     if (e.direction === 4) {
-    //       this.currentIndex = this.previousIndex;
-    //     }
-    //   }
-    // }
   }
 });
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 @import "@/assets/style/all.scss";
 
 .wrapper {
@@ -147,6 +129,7 @@ export default defineComponent({
       width: 100%;
       height: 100%;
       background-position: center;
+      background-size: cover;
     }
 
     &.active {
