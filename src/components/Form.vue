@@ -66,12 +66,6 @@ export default defineComponent({
         .join("&");
     },
     handleSubmit() {
-      const axiosConfig = {
-        header: {
-          "Content-Type": "application/x-www-form-urlencoded"
-        }
-      };
-
       axios
         .post(
           "/",
@@ -80,14 +74,16 @@ export default defineComponent({
             name: this.name,
             email: this.email,
             message: this.message
-          }),
-          axiosConfig
+          })
+          //   header: {
+          //   "Content-Type": "application/x-www-form-urlencoded"
+          // }
         )
         .then(() => {
           this.processed = true;
           this.success = true;
         })
-        .catch((e) => {
+        .catch(() => {
           this.processed = true;
           this.success = false;
         });
