@@ -22,17 +22,20 @@
           <span>Plus&nbsp;one?</span>
           <input type="checkbox" name="plusOne" v-model="plusOne" />
         </label>
+        <p class="error" v-if="error">Email/Name are required fields</p>
         <button class="button-full submit" type="submit">Send</button>
       </form>
     </div>
     <div class="proccessed" v-else>
       <div class="message">
-        <h3 v-if="success">
-          Your message has been recieved, we look forward to seeing you!
-        </h3>
+        <h3 v-if="success">We received your RSVP! See you at the wedding!</h3>
         <h3 v-else>
-          There was an error processing you're request. Please try again later
-          or contact me via email.
+          Oops your RSVP didn't go through. Please try again or contact us via
+          <a
+            href="mailto:19tt94@gmail.com"
+            style="text-decoration: underline; display: inline-block"
+            >email</a
+          >.
         </h3>
       </div>
     </div>
@@ -53,7 +56,8 @@ export default defineComponent({
       attending: 1,
       plusOne: true,
       processed: false,
-      success: false
+      success: false,
+      error: false
     };
   },
   methods: {
@@ -71,26 +75,29 @@ export default defineComponent({
         }
       };
 
-      axios
-        .post(
-          "/",
-          this.encode({
-            "form-name": "rsvp",
-            name: this.name,
-            email: this.email,
-            attending: this.attending,
-            plusOne: this.plusOne
-          }),
-          axiosConfig
-        )
-        .then(() => {
-          this.processed = true;
-          this.success = true;
-        })
-        .catch(() => {
-          this.processed = true;
-          this.success = false;
-        });
+      if (!this.email || !this.name) {
+        this.error = true;
+      } else
+        axios
+          .post(
+            "/",
+            this.encode({
+              "form-name": "rsvp",
+              name: this.name,
+              email: this.email,
+              attending: this.attending,
+              plusOne: this.plusOne
+            }),
+            axiosConfig
+          )
+          .then(() => {
+            this.processed = true;
+            this.success = true;
+          })
+          .catch(() => {
+            this.processed = true;
+            this.success = false;
+          });
     }
   }
 });
@@ -126,6 +133,13 @@ export default defineComponent({
 
   .inline {
     display: inline-flex;
+  }
+
+  .error {
+    color: red;
+    text-align: center;
+    width: 100%;
+    @include quiet();
   }
 }
 </style>
