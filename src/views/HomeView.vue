@@ -26,20 +26,43 @@ import Welcome from "@/assets/svgs/Welcome.vue";
   height: 100%;
 
   &-column {
-    width: 50%;
-    height: 100%;
-    padding: $pad 0 $pad $pad;
+    width: 100%;
+    height: 50%;
+
+    @include bp(1) {
+      height: 100%;
+      padding: $pad;
+    }
+
+    @include bp(2) {
+      width: 50%;
+      padding: $pad 0 $pad $pad;
+    }
+
+    &:first-child {
+      margin-top: $nav;
+
+      @include bp(2) {
+        margin-top: 0;
+      }
+    }
 
     &:last-child {
-      padding-right: $pad;
+      @include bp(2) {
+        padding-right: $pad;
+      }
     }
   }
 
   .slider-wrapper {
     height: calc(100% - $nav);
-    margin-top: $nav;
     border: 2px solid $primary;
     padding: $pad * 2;
+    margin: $pad;
+
+    @include bp(2) {
+      margin-top: $nav;
+    }
   }
 }
 </style>

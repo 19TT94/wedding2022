@@ -4,6 +4,9 @@ import Form from "@/components/Form.vue";
 
 <template>
   <main class="page rsvp">
+    <p class="notice">
+      Please note, all guests must be fully vaccinated or wear a mask.
+    </p>
     <section class="rsvp-form">
       <div class="rsvp-form-border">
         <img class="stamp" src="@/assets/images/stamp.png" />
@@ -28,14 +31,22 @@ import Form from "@/components/Form.vue";
   padding: calc($nav + $pad * 2) $pad * 2 $pad * 2 $pad * 2;
 }
 
+.notice {
+  padding-bottom: $pad;
+  text-align: center;
+}
+
 .rsvp-form {
   width: 100%;
-  height: 100%;
+  height: calc(100% - $pad * 3);
   background: $gray;
-  padding: $pad;
   box-shadow: $shadow;
   max-width: $bp-4;
   margin: 0 auto;
+
+  @include bp(2) {
+    padding: $pad;
+  }
 
   &-border {
     @include flex(row, wrap, left, left);
@@ -47,13 +58,21 @@ import Form from "@/components/Form.vue";
   }
 
   &-col {
-    width: 50%;
-    align-self: center;
-    justify-self: center;
     text-align: center;
+    align-self: center;
+    width: 100%;
+
+    @include bp(2) {
+      width: 50%;
+    }
 
     &:last-child {
-      border-left: 2px solid $primary;
+      border-top: 2px solid $primary;
+
+      @include bp(2) {
+        border-top: 0;
+        border-left: 2px solid $primary;
+      }
     }
   }
 }
@@ -62,11 +81,20 @@ import Form from "@/components/Form.vue";
   position: absolute;
   top: 0;
   right: 0;
-  width: 140px;
   padding: $pad;
+  width: 100px;
+
+  @include bp(2) {
+    width: 140px;
+  }
 }
 
 .title {
   font-style: italic;
+  margin-top: $pad * 3;
+
+  @include bp(2) {
+    margin-top: 0;
+  }
 }
 </style>

@@ -50,10 +50,15 @@
   padding: calc($nav + $pad * 2) $pad * 2 $pad * 2 $pad * 2;
 
   &-column {
-    width: 50%;
-    height: 100%;
-    padding: $pad * 2;
+    @include flex(column, nowrap, space-between, center);
+    padding: $pad;
     text-align: center;
+    width: 100%;
+
+    @include bp(2) {
+      width: 50%;
+      height: 100%;
+    }
   }
 }
 </style>

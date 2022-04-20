@@ -14,9 +14,7 @@
         <router-link to="/rsvp">RSVP</router-link>
       </li>
       <li class="menu-links-link">
-        <router-link to="/directions">
-          Directions &amp; Accomodations
-        </router-link>
+        <router-link to="/directions"> Details </router-link>
       </li>
       <li class="menu-links-link">
         <a

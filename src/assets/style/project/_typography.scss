@@ -3,21 +3,29 @@
 /** TYPE PATTERNS **/
 @mixin quiet() {
   font-size: 16px;
-  line-height: 1.4; // no units on line-height
+  line-height: 1.4;
   letter-spacing: 0.75px;
 }
 
 @mixin normal() {
-  font-size: 20px;
-  line-height: 1.4; // no units on line-height
+  font-size: 14px;
+  line-height: 1.4;
   letter-spacing: 0.75px;
+
+  @include bp(1) {
+    font-size: 20px;
+  }
 }
 
 @mixin bold() {
-  font-size: 26px; // please just use pxs.
-  line-height: 1.4; // no units on line-height
-  letter-spacing: 0.02em; // ems for letter-spacing 'kearning'
-  font-weight: 400; // no 'normal' and 'bold' - make sure your font supports this - or the browser will try and fake it - and it'll cause troubles for you
+  font-size: 20px;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+  font-weight: 400;
+
+  @include bp(1) {
+    font-size: 26px;
+  }
 }
 
 @mixin strong() {

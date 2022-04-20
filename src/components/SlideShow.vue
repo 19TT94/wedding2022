@@ -87,10 +87,14 @@ export default defineComponent({
   },
   methods: {
     initialize(): void {
-      setTimeout(() => {
-        this.currentIndex = 0;
-        this.setupFinished = true;
-      }, 500);
+      this.currentIndex = 0;
+      this.setupFinished = true;
+      this.auto();
+    },
+    auto(): void {
+      setInterval(() => {
+        this.forward();
+      }, 3000);
     },
     setItem(index: number): void {
       this.currentIndex = index;
@@ -148,11 +152,9 @@ export default defineComponent({
     z-index: $base;
 
     span {
-      padding: 1.5rem;
+      padding: $pad;
       text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.8);
-      @include bp(1) {
-        font-size: 2rem;
-      }
+      @include bold();
     }
   }
   .button,
@@ -167,7 +169,7 @@ export default defineComponent({
     border: 0;
     transform: translate(0, -50%);
     .next {
-      color: $black;
+      color: $primary;
       padding: 1.5rem 1rem;
       text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.8);
       @include bp(1) {
@@ -193,11 +195,9 @@ export default defineComponent({
   }
   .pagination {
     position: absolute;
-    bottom: 1rem;
+    bottom: 0;
     width: 100%;
-    @include bp(1) {
-      bottom: 4rem;
-    }
+
     .item-list {
       margin: 0;
       padding: 0;
@@ -207,13 +207,12 @@ export default defineComponent({
     }
     .item {
       display: block;
-      padding: 0 1rem;
       button {
         color: $white;
       }
       &.active {
         button {
-          color: $black;
+          color: $primary;
         }
       }
     }
