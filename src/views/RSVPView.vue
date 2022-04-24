@@ -5,7 +5,9 @@ import Form from "@/components/Form.vue";
 <template>
   <main class="page rsvp">
     <p class="notice">
-      Please note, all guests must be fully vaccinated or wear a mask.
+      Please note, we want everyone to feel comfortable at our celebration. We
+      would prefer that all guests be fully vaccinated or wear a mask. Please do
+      not attend if you are starting to show symptoms before the wedding.
     </p>
     <section class="rsvp-form">
       <div class="rsvp-form-border">

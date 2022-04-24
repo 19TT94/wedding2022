@@ -1336,6 +1336,7 @@ export default {
 
 .welcome {
   height: 100%;
-  padding: $pad 0;
+  width: 100%;
+  padding: $pad;
 }
 </style>

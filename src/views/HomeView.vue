@@ -55,13 +55,16 @@ import Welcome from "@/assets/svgs/Welcome.vue";
   }
 
   .slider-wrapper {
-    height: calc(100% - $nav);
-    border: 2px solid $primary;
-    padding: $pad * 2;
+    position: relative;
     margin: $pad;
+    border: 2px solid $primary;
+    height: calc(100% - $nav);
+    min-height: 300px;
+    padding: $pad;
 
     @include bp(2) {
       margin-top: $nav;
+      padding: $pad * 2;
     }
   }
 }
