@@ -7,7 +7,10 @@
         :key="`x-${index}`"
         :class="[`slide-${index}`, { active: currentIndex === index }]"
       >
-        <div class="content" :style="item"></div>
+        <div
+          class="content"
+          :style="`background-image: url(${getImage(index)})`"
+        ></div>
       </li>
     </ul>
 
@@ -49,15 +52,8 @@ export default defineComponent({
   },
   data() {
     return {
-      slides: [
-        "background-image: url(https://drive.google.com/uc?id=1pfsOForvjeWhdV3UjFQ86pVk04PmIB_L);",
-        "background-image: url(https://drive.google.com/uc?id=1Jmhgp_2zdmBblZoIytkmi54pVWJUedBw)",
-        "background-image: url(https://drive.google.com/uc?id=1zsqD9F-bLVPkcvHaT_zLcmXo2mZCGCDP",
-        "background-image: url(https://drive.google.com/uc?id=1s_X5fuipJO3TN5STsMRszH5AXIFCFZzh)",
-        "background-image: url(https://drive.google.com/uc?id=1DmyqJxkHDhLalWlg1fTDOlU0RJfFJ5jM)",
-        "background-image: url(https://drive.google.com/uc?id=1GBJl6eqLcQM7n4_2XF-_gi5RAVZSIy3j)"
-      ],
       currentIndex: 0,
+      slides: 6,
       navigation: true,
       dots: true,
       dotText: false,
@@ -66,7 +62,7 @@ export default defineComponent({
   },
   computed: {
     itemsLength(): number {
-      return [...this.slides].length - 1;
+      return this.slides - 1;
     },
     previousIndex(): number {
       return this.currentIndex - 1 < 0
@@ -104,6 +100,12 @@ export default defineComponent({
     },
     backward(): void {
       this.currentIndex = this.previousIndex;
+    },
+    getImage(index: number): string {
+      return new URL(
+        `/src/assets/images/slide${index + 1}.jpg`,
+        import.meta.url
+      ).href;
     }
   }
 });

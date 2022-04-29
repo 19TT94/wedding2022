@@ -29,7 +29,6 @@ import Form from "@/components/Form.vue";
 .rsvp {
   position: relative;
   width: 100%;
-  height: 100%;
   padding: calc($nav + $pad * 2) $pad * 2 $pad * 2 $pad * 2;
 }
 
