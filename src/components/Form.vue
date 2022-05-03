@@ -11,17 +11,18 @@
         @submit.prevent="handleSubmit()"
       >
         <input type="hidden" name="form-name" value="rsvp" />
-        <input type="text" placeholder="Name" name="name" v-model="name" />
+        <label for="name"
+          >Our venue has a guest limit, so please only indicate those addressed
+          on the invition or yourself and a plus one.</label
+        >
+        <input type="text" placeholder="Name(s)" name="name" v-model="name" />
         <input type="email" placeholder="Email" name="email" v-model="email" />
         <label for="attending" class="inline">
           <span>Attending</span>
           <input type="radio" name="attending" v-model="attending" checked />yes
           <input type="radio" name="attending" v-model="attending" />no
         </label>
-        <label for="plusOne" class="inline">
-          <span>Plus&nbsp;one?</span>
-          <input type="checkbox" name="plusOne" v-model="plusOne" />
-        </label>
+        <input type="text" placeholder="Message/Question" v-model="message" />
         <p class="error" v-if="error">Email/Name are required fields</p>
         <button class="button-full submit" type="submit">Send</button>
       </form>
@@ -54,7 +55,7 @@ export default defineComponent({
       name: "",
       email: "",
       attending: 1,
-      plusOne: true,
+      message: "",
       processed: false,
       success: false,
       error: false
@@ -86,7 +87,7 @@ export default defineComponent({
               name: this.name,
               email: this.email,
               attending: this.attending,
-              plusOne: this.plusOne
+              message: this.message
             }),
             axiosConfig
           )
@@ -115,6 +116,7 @@ export default defineComponent({
     justify-content: center;
     margin: 10px auto;
     width: 90%;
+    min-height: 400px;
 
     input {
       width: 100%;
