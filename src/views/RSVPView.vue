@@ -44,10 +44,7 @@ import Form from "@/components/Form.vue";
   box-shadow: $shadow;
   max-width: $bp-4;
   margin: 0 auto;
-
-  @include bp(2) {
-    padding: $pad;
-  }
+  padding: $pad;
 
   &-border {
     @include flex(row, wrap, left, left);
@@ -56,15 +53,16 @@ import Form from "@/components/Form.vue";
     height: 100%;
     padding: $pad;
     border: 2px solid $primary;
+    min-height: 600px;
   }
 
   &-col {
-    text-align: center;
-    align-self: center;
     width: 100%;
+    @include flex(row, wrap, center, center);
 
     @include bp(2) {
       width: 50%;
+      min-height: 400px;
     }
 
     &:last-child {

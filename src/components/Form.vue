@@ -106,17 +106,14 @@ export default defineComponent({
 
 <style scoped lang="scss">
 @import "@/assets/style/all.scss";
-.netlify-form {
-  display: relative;
 
-  #form {
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    justify-content: center;
+.netlify-form {
+  @include flex(row, wrap, center, center);
+
+  .form {
     margin: 10px auto;
     width: 90%;
-    min-height: 400px;
+    height: 100%;
 
     input {
       width: 100%;
